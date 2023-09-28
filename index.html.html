@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Hotel - Luxury Redefined</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    header {
+      background-color: #1e3b6e;
+      color: #fff;
+      font-size: xx-large;
+      text-align: center;
+      padding: 4rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #1e3b6e;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff9800;
+    }
+
+    nav ul {
+      display: none;
+      list-style: none;
+      position: absolute;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      padding: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav li:hover ul {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    
+
+    .hero {
+      text-align: center;
+      padding: 8rem 0;
+      background-image: url('https://th.bing.com/th/id/OIG.QXVSQlmFq988n6qdFifv?w=173&h=173&c=6&r=0&o=5&dpr=1.3&pid=ImgGn');
+      background-size: contain;
+      background-position: center;
+      color: #eff0f6;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .features {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      background-color: #1e1e1e;
+      padding: 4rem 0;
+      background-image: url('https://www.bing.com/images/create/luxurious-hotel/64cb7a1355874bbf9958ab64e17f5f1a?id=oxotfzJNsiyWTwvz20CTMg%3d%3d&view=detailv2&idpp=genimg&idpclose=1&FORM=SYDBIC');
+      background-size: center;
+      background-position: center;
+    }
+
+    .feature-slider {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      margin: 0 1rem;
+    }
+
+    .feature {
+      text-align: center;
+      flex-shrink: 0;
+      width: 300px;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: #212121;
+      transition: transform 0.3s ease;
+    }
+
+    .feature img {
+      width: 240px;
+      height: 240px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+    }
+
+    .feature h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .feature p {
+      font-size: 1.2rem;
+    }
+
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 0.5rem;
+      border-radius: 50%;
+      z-index: 1;
+      transition: background-color 0.3s ease;
+    }
+
+    .slider-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .slider-arrow.left {
+      left: 1rem;
+    }
+
+    .slider-arrow.right {
+      right: 1rem;
+    }
+
+    .chat-section {
+      text-align: center;
+      background-color: #ff9800;
+      color: #fff;
+      padding: 6rem 0;
+      background-image: url('https://th.bing.com/th/id/OIP.gKgJ_K4web7QpXxy59KNAQHaEK?w=307&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7');
+      background-size: contain;
+      background-position: center;
+    }
+
+    .chat-section h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .chat-section p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chat-section button {
+      padding: 1.5rem 3rem;
+      font-size: 1.4rem;
+      background-color: #e65100;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .chat-section button:hover {
+      background-color: #c62828;
+    }
+
+    .booking-section {
+      text-align: center;
+      background-color: #1e3b6e;
+      color: #fff;
+      padding: 6rem 0;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFsQTutjiooXZdaQ7wJMIBYfjXfDZzbHyj2g&usqp=CAU');
+      background-size: contain;
+      background-position: center;
+    }
+
+    .booking-section h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .booking-section p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .booking-section button {
+      padding: 1.5rem 3rem;
+      font-size: 1.4rem;
+      background-color: #6a9da4;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .booking-section button:hover {
+      background-color: #2855c6;
+    }
+
+
+    .food-header {
+      text-align: center;
+      background-color: #8bc34a;
+      color: #fff;
+      padding: 6rem 0;
+      background-image: url('https://thesmartlocal.com/images/easyblog_images/2163/image04_20150506-054700_1.jpg');
+      background-size: contain;
+      background-position: center;
+    }
+
+    .food-header h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .food-header p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu-header {
+      text-align: center;
+      background-color: #f44336;
+      color: #fff;
+      padding: 6rem 0;
+      background-image: url('menu-header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .menu-header h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-header p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .menu-item {
+      width: 250px;
+      margin: 1rem;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: #3f51b5;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item img {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+    }
+
+    .menu-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      background-color: #1e3b6e;
+      color: #fff;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Grand Hotel</h1>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Rooms ▾</a>
+    <ul>
+      <li><a href="#">Basic</a></li>
+      <li><a href="#">Elite</a></li>
+      <li><a href="#">AC</a></li>
+      <li><a href="#">Non-AC</a></li>
+      <!-- Add more sub-options as needed -->
+    </ul>
+    <a href="#">Dining ▾</a>
+    <ul>
+      <li><a href="#">Restaurant</a></li>
+      <li><a href="#">Bar & Lounge</a></li>
+      <!-- Add more sub-options as needed -->
+    </ul>
+    <a href="#">Facilities ▾</a>
+    <ul>
+      <li><a href="#">Spa</a></li>
+      <li><a href="#">Fitness Center</a></li>
+      <li><a href="#">Swimming Pool</a></li>
+      <li><a href="#">Business Center</a></li>
+      <li><a href="#">Concierge Services</a></li>
+      <!-- Add more sub-options as needed -->
+    </ul>
+    <a href="#">Events ▾</a>
+    <ul>
+      <li><a href="#">Weddings</a></li>
+      <li><a href="#">Conferences</a></li>
+      <li><a href="#">Special Occasions</a></li>
+      <!-- Add more sub-options as needed -->
+    </ul>
+
+
+
+
+
+
+  </nav>
+  <section class="hero">
+    <h1>Welcome to Grand Hotel</h1>
+    <p>Luxury Redefined - Experience the finest moments.</p>
+  </section>
+  <section class="features">
+    <div class="slider-arrow left">&#10094;</div>
+    <div class="feature-slider">
+      <div class="feature">
+        <img src="https://th.bing.com/th/id/OIG.N35_FComrhmL6KJfeHYl?w=173&h=173&c=6&r=0&o=5&dpr=1.3&pid=ImgGn"
+          alt="Feature 1">
+        <h3>Elegant Rooms</h3>
+        <p>Relax in our spacious and beautifully designed rooms.</p>
+      </div>
+      <div class="feature">
+        <img src="https://images.pexels.com/photos/1395964/pexels-photo-1395964.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="Feature 2">
+        <h3>Fine Dining</h3>
+        <p>Savor exquisite cuisines prepared by our expert chefs.</p>
+      </div>
+      <div class="feature">
+        <img src="https://th.bing.com/th/id/OIP.aibYyTqpfQXRXqoPs54CUAHaE8?w=263&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+          alt="Feature 3">
+        <h3>Recreational Facilities</h3>
+        <p>Enjoy our state-of-the-art fitness center and swimming pool.</p>
+      </div>
+      <div class="feature">
+        <img
+          src="https://th.bing.com/th/id/OIG.j4P0rgH50y.UhHnDe1yz?pid=ImgGn "
+          alt="Feature 4">
+        <h3>Spa Services</h3>
+        <p>Indulge in rejuvenating spa treatments.</p>
+      </div>
+      <div class="feature">
+        <img src="https://th.bing.com/th/id/OIP.ypxNS3qG_0lkOtBuufYRcwHaDt?w=336&h=174&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+          alt="Feature 5">
+        <h3>Concierge Services</h3>
+        <p>Let our attentive staff take care of your needs.</p>
+      </div>
+      <div class="feature">
+        <img
+          src=" https://th.bing.com/th/id/OIG.fXxGZ2759Y5j2Ih9Tz5q?pid=ImgGn"
+          alt="Business Center">
+        <h3>Business Center</h3>
+        <p>Stay connected and productive with our business amenities.</p>
+      </div>
+      <!-- Add more features as per your convenience -->
+    </div>
+    <div class="slider-arrow right">&#10095;</div>
+  </section>
+  <section class="chat-section">
+    <h2>Chat with Our AI Chatbot</h2>
+    <p>Got questions? Our friendly AI chatbot is here to assist you.</p>
+    <button>Chat Now</button>
+  </section>
+  <section class="booking-section">
+    <h2>Book Your Table</h2>
+    <p>Reserve a table at our elegant dining venues.</p>
+    <button>Book Now</button>
+  </section>
+  <section class="food-header">
+    <h2>Delight Your Taste Buds</h2>
+    <p>Explore our sumptuous culinary offerings.</p>
+  </section>
+  <div class="menu-container">
+
+    <div class="menu-item">
+      <img src="https://th.bing.com/th/id/OIP.yAzOiDCAw_d00QW6sjGaEgHaE8?w=254&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+        alt="classic streak">
+      <h3>Classic Steak</h3>
+      <p>A succulent steak served with roasted vegetables and creamy mashed potatoes.</p>
+    </div>
+    <div class="menu-item">
+      <img src="https://th.bing.com/th/id/OIP.SD-rTkuKDb3NcxhxTVzhpwHaE8?w=290&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+        alt="Seafood Platter">
+      <h3>Seafood Platter</h3>
+      <p>A delightful combination of fresh seafood including prawns, lobster, and scallops.</p>
+    </div>
+    <div class="menu-item">
+      <img src="https://i.ytimg.com/vi/GO4uhLxswaQ/maxresdefault.jpg" alt="Vegetarian Delight">
+      <h3>Vegetarian Delight</h3>
+      <p>A medley of seasonal vegetables and herbs, bursting with flavor.</p>
+    </div>
+    <!-- Add more menu items as per your convenience -->
+  </div>
+  <footer>
+    <p>&copy; 2023 Grand Hotel. All rights reserved.</p>
+  </footer>
+
+   
+  <script>
+  
+  // JavaScript code to handle navigation menu
+  const navItems = document.querySelectorAll("nav a");
+
+  navItems.forEach((item) => {
+    item.addEventListener("mouseover", () => {
+      const subMenu = item.nextElementSibling;
+      if (subMenu) {
+        subMenu.style.display = "block";
+      }
+    });
+
+    item.addEventListener("mouseout", () => {
+      const subMenu = item.nextElementSibling;
+      if (subMenu) {
+        subMenu.style.display = "none";
+      }
+    });
+  });
+ 
+
+ 
+  // JavaScript code for feature section
+  const featureSlider = document.querySelector(".feature-slider");
+  const sliderArrowLeft = document.querySelector(".slider-arrow.left");
+  const sliderArrowRight = document.querySelector(".slider-arrow.right");
+
+  let translateX = 0;
+  const featureWidth = 320; // Width of each feature item including margin
+  const featureMargin = 20; // Margin between each feature item
+
+  // Function to calculate the total width required for all features
+  function calculateFeatureSliderWidth() {
+    const numFeatures = document.querySelectorAll(".feature").length;
+    return numFeatures * (featureWidth + featureMargin);
+  }
+
+  // Function to update the feature slider position
+  function updateFeatureSliderPosition() {
+    const maxTranslateX = calculateFeatureSliderWidth() - featureSlider.clientWidth;
+    featureSlider.style.transform = `translateX(${Math.min(0, Math.max(-maxTranslateX, translateX))}px)`;
+  }
+
+  sliderArrowLeft.addEventListener("click", () => {
+    translateX += featureWidth + featureMargin;
+    updateFeatureSliderPosition();
+  });
+
+  sliderArrowRight.addEventListener("click", () => {
+    translateX -= featureWidth + featureMargin;
+    updateFeatureSliderPosition();
+  });
+ 
+
+  </script>
+</body>
+
+</html>
